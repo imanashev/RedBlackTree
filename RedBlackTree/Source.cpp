@@ -27,7 +27,13 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	try {
 		BinaryTree<int> myTree;
-		genTree(myTree, 10);
+		//genTree(myTree, 10);
+		myTree.attach(3);
+		myTree.attach(5);
+		myTree.attach(7);
+		int a = 7;
+		myTree.deleteItem(a);
+
 		myTree.printLevels();
 		cout << myTree;
 

@@ -328,7 +328,7 @@ void BinaryTree<TreeItemType>::delete_case4(TreeNode<TreeItemType>* node)
 		(s->leftChildPtr->color == TreeNode<TreeItemType>::BLACK) &&
 		(s->rightChildPtr->color == TreeNode<TreeItemType>::BLACK))
 	{
-		s->color = RED;
+		s->color = TreeNode<TreeItemType>::RED;
 		node->parentPtr->color = TreeNode<TreeItemType>::BLACK;
 	}
 	else
@@ -370,7 +370,7 @@ void BinaryTree<TreeItemType>::delete_case6(TreeNode<TreeItemType>* node)
 	s->color = node->parentPtr->color;
 	node->parentPtr->color = TreeNode<TreeItemType>::BLACK;
 
-	if (node == node->parentPtr->left) {
+	if (node == node->parentPtr->leftChildPtr) {
 		s->rightChildPtr->color = TreeNode<TreeItemType>::BLACK;
 		rotate_left(node->parentPtr);
 	}
@@ -571,7 +571,14 @@ void BinaryTree<TreeItemType>::printLevels_helper(unsigned int level, std::queue
 	std::queue<TreeNode<TreeItemType>*> nextLevelHubs;
 	while (!levelHubs.empty())
 	{
-		std::cout << levelHubs.front()->item << std::endl;
+		if (levelHubs.front()->isEmpty)
+		{
+			std::cout << "LEAF" << std::endl;
+		}
+		else
+		{
+			std::cout << levelHubs.front()->item << std::endl;
+		}
 		if (levelHubs.front()->leftChildPtr != NULL)
 			nextLevelHubs.push(levelHubs.front()->leftChildPtr);
 		if (levelHubs.front()->rightChildPtr != NULL)
